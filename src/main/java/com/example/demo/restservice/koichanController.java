@@ -1,5 +1,7 @@
 package com.example.demo.restservice;
-
+import java.util.Objects;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,17 +12,18 @@ public class koichanController {
     @GetMapping("/koichan")
     public koichanService koichan(@RequestParam(value="currentDT") String currentDT_end){
 
-// //パラメータがNullだった場合は生成
-//         if(Objects.isNull(currentDT_end)){
-//             Date currentDT = new Date();
+// //パラメータが空またはNullだった場合は生成　　この分岐通ってない
+        if(currentDT_end == ""){
+            System.out.println("パラメータがなかったから作るぶう");
+            Date currentDT = new Date();
 
-//             SimpleDateFormat sdf = new SimpleDateFormat("s");
-//             String currentDT_end_str = sdf.format(currentDT);
-//             currentDT_end = Integer.parseInt(currentDT_end_str.substring(currentDT_end_str.length()-1));
+            SimpleDateFormat sdf = new SimpleDateFormat("s");
+            String currentDT_end_str = sdf.format(currentDT);
+            currentDT_end = currentDT_end_str.substring(currentDT_end_str.length()-1);
 
-//             System.out.println(currentDT);
-//             System.out.println(currentDT_end_str);
-//         }
+            System.out.println(currentDT);
+            System.out.println(currentDT_end_str);
+        }
 
         System.out.println(currentDT_end);
  
@@ -28,9 +31,12 @@ public class koichanController {
         String koichan_message = "";
 
         switch(currentDT_end){
+            case "0":
+            koichan_message = "かいぬし！";
+            break;
             case "1":
-                koichan_message = "そうぶうか";
-                break;
+            koichan_message = "そうぶうか";
+            break;
             case "2":
             koichan_message = "そうぶうね";
             break;
@@ -57,7 +63,7 @@ public class koichanController {
             break;
         
             default:
-                koichan_message = "かいぬし！";
+                koichan_message = "・・・";
 
         }
 
