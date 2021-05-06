@@ -56,7 +56,7 @@ public class koichanController {
             koichan_message = "おっはぶう～♪";
             break;
             case "8":
-            koichan_message = "あそぼうぶう";
+            koichan_message = "どよよ";
             break;
             case "9":
             koichan_message = "ばいぶう";
